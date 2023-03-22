@@ -18,7 +18,7 @@ Next, install the required dependencies by running:
 
 ## Running the App
 
-To run the development environment, execute the following command in your terminal:
+To run the development environment, run:
 
 `npm run dev`
 
