@@ -1,5 +1,11 @@
 import type { AppProps } from 'next/app'
+import { Normalize } from 'styled-normalize'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Normalize />
+      <Component {...pageProps} />
+    </>
+  )
 }
