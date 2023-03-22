@@ -46,18 +46,23 @@ export const SubTitle = styled.p<{ hasError: boolean }>`
   color: ${(props) => (props.hasError ? 'red' : 'black')};
 `
 
-export const PlayButton = styled.button<{ isPlaying: boolean }>`
+export const IconButton = styled.button`
   border: none;
   background: none;
-  color: ${(props) => (props.isPlaying ? 'red' : 'green')};
   cursor: pointer;
 `
 
-export const NextButton = styled.button<{ isPlaying: boolean }>`
-  border: none;
-  background: none;
+export const PlayButton = styled(IconButton)<{ isPlaying: boolean }>`
+  color: ${(props) => (props.isPlaying ? 'red' : 'green')};
+`
+
+export const NextButton = styled(IconButton)<{ isPlaying: boolean }>`
   color: ${(props) => (props.disabled ? 'gray' : 'orange')};
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+`
+
+export const ResetButton = styled(IconButton)`
+  color: red;
 `
 
 export const ButtonContainer = styled.div`

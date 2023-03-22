@@ -9,14 +9,15 @@ import {
   ButtonContainer,
   PlayButton,
   NextButton,
+  ResetButton,
 } from './GridSettings.style'
-import { FastForwardCircleFill, PlayCircleFill, StopCircleFill } from 'styled-icons/bootstrap'
-import useCreateGrid from '@hook/use-create-grid'
+import useGameLoop from '@hook/use-game-loop'
+import { Refresh, PlayCircle, StopCircle, ArrowRightCircle } from 'styled-icons/remix-fill'
 
 const GridSettings = function () {
-  const { gridWidth, gridHeight, setGridWidth, setGridHeight, isPlaying, toggleIsPlaying } = useGridState()
-  const cellCoords = useCreateGrid()
+  const { gridWidth, gridHeight, setGridWidth, setGridHeight, isPlaying, toggleIsPlaying, reset } = useGridState()
   const isError = Boolean(typeof gridWidth !== 'number') || Boolean(typeof gridHeight !== 'number')
+  const gameLoop = useGameLoop()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>, func: (size: number | '') => void) => {
     const value = Number(event.target.value)
@@ -46,12 +47,22 @@ const GridSettings = function () {
       </InputContainer>
 
       <ButtonContainer>
-        <PlayButton onClick={toggleIsPlaying} isPlaying={isPlaying}>
-          {isPlaying ? <StopCircleFill size={60} /> : <PlayCircleFill size={60} />}
+        <ResetButton onClick={reset}>
+          <Refresh size={60} />
+        </ResetButton>
+
+        <PlayButton
+          onClick={() => {
+            toggleIsPlaying()
+            gameLoop()
+          }}
+          isPlaying={isPlaying}
+        >
+          {isPlaying ? <StopCircle size={60} /> : <PlayCircle size={60} />}
         </PlayButton>
 
-        <NextButton disabled={isPlaying} isPlaying={isPlaying}>
-          <FastForwardCircleFill size={60} />
+        <NextButton disabled={isPlaying} isPlaying={isPlaying} onClick={gameLoop}>
+          <ArrowRightCircle size={60} />
         </NextButton>
       </ButtonContainer>
     </SettingsContainer>
