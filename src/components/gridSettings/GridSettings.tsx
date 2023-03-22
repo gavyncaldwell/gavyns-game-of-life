@@ -6,18 +6,23 @@ import {
   InputContainer,
   Title,
   SubTitle,
-  PlayButton,
   ButtonContainer,
+  PlayButton,
+  NextButton,
 } from './GridSettings.style'
-import { PlayCircleFill } from '@styled-icons/bootstrap/PlayCircleFill'
-import { StopCircleFill } from '@styled-icons/bootstrap/StopCircleFill'
+import { FastForwardCircleFill, PlayCircleFill, StopCircleFill } from 'styled-icons/bootstrap'
+import useCreateGrid from '@hook/use-create-grid'
 
 const GridSettings = function () {
-  const { isPlaying, setIsPlaying, gridWidth, gridHeight, setGridWidth, setGridHeight } = useGridState()
+  const { gridWidth, gridHeight, setGridWidth, setGridHeight, isPlaying, toggleIsPlaying } = useGridState()
+  const cellCoords = useCreateGrid()
+  const isError = Boolean(typeof gridWidth !== 'number') || Boolean(typeof gridHeight !== 'number')
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, func: (size: number) => void) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, func: (size: number | '') => void) => {
     const value = Number(event.target.value)
-    if (event.target.value === '' || !Number.isNaN(value) || value >= 5 || value <= 100) {
+    if (event.target.value === '') {
+      func('')
+    } else if (!Number.isNaN(value) || value >= 5 || value <= 100) {
       func(value)
     }
   }
@@ -25,17 +30,29 @@ const GridSettings = function () {
   return (
     <SettingsContainer>
       <Title>Board Size</Title>
-      <SubTitle>5 - 100</SubTitle>
+      <SubTitle hasError={isError}>{isError ? 'Make sure to enter a value between 5 and 100' : '5 - 100'}</SubTitle>
       <InputContainer>
-        <Input placeholder="5 - 100" value={gridWidth} onChange={(event) => handleInputChange(event, setGridWidth)} />
-        <h4>X</h4>
-        <Input placeholder="5 - 100" value={gridHeight} onChange={(event) => handleInputChange(event, setGridHeight)} />
+        <Input
+          hasError={Boolean(typeof gridWidth !== 'number')}
+          value={gridWidth}
+          onChange={(event) => handleInputChange(event, setGridWidth)}
+        />
+        <h4 style={{ padding: 10 }}>X</h4>
+        <Input
+          hasError={Boolean(typeof gridHeight !== 'number')}
+          value={gridHeight}
+          onChange={(event) => handleInputChange(event, setGridHeight)}
+        />
       </InputContainer>
 
       <ButtonContainer>
-        <PlayButton onClick={() => setIsPlaying(!isPlaying)} isPlaying={isPlaying}>
+        <PlayButton onClick={toggleIsPlaying} isPlaying={isPlaying}>
           {isPlaying ? <StopCircleFill size={60} /> : <PlayCircleFill size={60} />}
         </PlayButton>
+
+        <NextButton disabled={isPlaying} isPlaying={isPlaying}>
+          <FastForwardCircleFill size={60} />
+        </NextButton>
       </ButtonContainer>
     </SettingsContainer>
   )

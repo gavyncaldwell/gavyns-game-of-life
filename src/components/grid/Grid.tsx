@@ -1,13 +1,29 @@
 import { useGridState } from '@hook/use-grid-state'
 import { GridBoard, GridCell, GridContainer } from './Grid.style'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import useCreateGrid, { Coord } from '@hook/use-create-grid'
 import { coordsIncludes, indexOfCoord, isEqual } from '@util/coord-functions'
 
 const Grid: React.FC = function () {
+  const running = useRef<any>()
   const [livingCells, setLivingCells] = useState<Coord[]>([])
   const { gridWidth, gridHeight, isPlaying } = useGridState()
   const cellCoords = useCreateGrid()
+
+  useEffect(() => {
+    const ticker = () => {
+      if (!running.current) {
+        return
+      }
+      gameLoop()
+      setTimeout(ticker, 1000)
+    }
+
+    if (isPlaying && !running.current) {
+      running.current = true
+      ticker()
+    }
+  }, [isPlaying, livingCells, cellCoords])
 
   const handleCellClick = (coord: Coord) => {
     const cells = [...livingCells]
@@ -70,7 +86,7 @@ const Grid: React.FC = function () {
 
   return (
     <GridContainer>
-      <GridBoard width={gridWidth} height={gridHeight}>
+      <GridBoard width={gridWidth || 0} height={gridHeight || 0}>
         {cellCoords.map((coord, i) => (
           <GridCell
             className={coordsIncludes(livingCells, coord) ? 'isAlive' : ''}
