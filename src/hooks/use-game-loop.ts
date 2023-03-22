@@ -31,7 +31,7 @@ export default function useGameLoop() {
       const neighborCells = getNeighbors(cellCoords, deadCell)
       const livingNeighbors = livingCells.filter((coord) => coordsIncludes(neighborCells, coord))
 
-      if (livingNeighbors.length >= 3) {
+      if (livingNeighbors.length === 3) {
         cellsToLive.push(deadCell)
       }
     })
