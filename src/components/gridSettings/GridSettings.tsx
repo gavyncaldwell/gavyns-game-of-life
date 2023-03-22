@@ -16,14 +16,16 @@ import { Refresh, PlayCircle, StopCircle, ArrowRightCircle } from 'styled-icons/
 
 const GridSettings = function () {
   const { gridWidth, gridHeight, setGridWidth, setGridHeight, isPlaying, toggleIsPlaying, reset } = useGridState()
-  const isError = Boolean(typeof gridWidth !== 'number') || Boolean(typeof gridHeight !== 'number')
+  const isError = Boolean(
+    typeof gridWidth !== 'number' || typeof gridHeight !== 'number' || gridWidth < 5 || gridHeight < 5
+  )
   const gameLoop = useGameLoop()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>, func: (size: number | '') => void) => {
     const value = Number(event.target.value)
     if (event.target.value === '') {
       func('')
-    } else if (!Number.isNaN(value) || value >= 5 || value <= 100) {
+    } else if (!Number.isNaN(value) && value <= 100) {
       func(value)
     }
   }
@@ -34,13 +36,13 @@ const GridSettings = function () {
       <SubTitle hasError={isError}>{isError ? 'Make sure to enter a value between 5 and 100' : '5 - 100'}</SubTitle>
       <InputContainer>
         <Input
-          hasError={Boolean(typeof gridWidth !== 'number')}
+          hasError={Boolean(typeof gridWidth !== 'number' || gridWidth < 5)}
           value={gridWidth}
           onChange={(event) => handleInputChange(event, setGridWidth)}
         />
         <h4 style={{ padding: 10 }}>X</h4>
         <Input
-          hasError={Boolean(typeof gridHeight !== 'number')}
+          hasError={Boolean(typeof gridHeight !== 'number' || gridHeight < 5)}
           value={gridHeight}
           onChange={(event) => handleInputChange(event, setGridHeight)}
         />
@@ -51,13 +53,7 @@ const GridSettings = function () {
           <Refresh size={60} />
         </ResetButton>
 
-        <PlayButton
-          onClick={() => {
-            toggleIsPlaying()
-            gameLoop()
-          }}
-          isPlaying={isPlaying}
-        >
+        <PlayButton onClick={toggleIsPlaying} isPlaying={isPlaying}>
           {isPlaying ? <StopCircle size={60} /> : <PlayCircle size={60} />}
         </PlayButton>
 

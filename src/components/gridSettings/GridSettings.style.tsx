@@ -5,7 +5,7 @@ export const SettingsContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  max-width: 300px;
+  max-width: 400px;
   padding: 30px 20px;
   border-radius: 16px;
   background: white;
@@ -24,11 +24,12 @@ export const InputContainer = styled.div`
 export const Input = styled.input<{ hasError: boolean }>`
   padding: 0 16px;
   border-radius: 4px;
-  border: 2px solid ${(props) => (props.hasError ? 'red' : 'black')};
+  border: 2px solid ${(props) => (props.hasError ? '#e73827' : 'black')};
   height: 40px;
   width: 40px;
   font-size: 20px;
   outline: none;
+  color: ${(props) => (props.hasError ? '#e73827' : 'black')};
 `
 
 export const Title = styled.h2`
@@ -43,7 +44,7 @@ export const SubTitle = styled.p<{ hasError: boolean }>`
   margin: 0;
   width: 100%;
   text-align: center;
-  color: ${(props) => (props.hasError ? 'red' : 'black')};
+  color: ${(props) => (props.hasError ? '#e73827' : 'black')};
 `
 
 export const IconButton = styled.button`
@@ -53,16 +54,16 @@ export const IconButton = styled.button`
 `
 
 export const PlayButton = styled(IconButton)<{ isPlaying: boolean }>`
-  color: ${(props) => (props.isPlaying ? 'red' : 'green')};
+  color: ${(props) => (props.isPlaying ? '#e73827' : '#2cac82')};
 `
 
 export const NextButton = styled(IconButton)<{ isPlaying: boolean }>`
-  color: ${(props) => (props.disabled ? 'gray' : 'orange')};
+  color: ${(props) => (props.disabled ? 'gray' : '#f8ac49')};
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `
 
 export const ResetButton = styled(IconButton)`
-  color: red;
+  color: #e73827;
 `
 
 export const ButtonContainer = styled.div`
