@@ -1,38 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gavyn's Game of Life
 
-## Getting Started
+Thank you for taking the time to review my assessment. This README file will guide you on how to download and run the codebase on your local machine. This is a Next.js app that uses TypeScript, Styled Components, and Zustand.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+To get started, please clone this repository by running the following command in your terminal:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+bashCopy code
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+`git  clone  https://github.com/gavyncaldwell/gavyns-game-of-life.git`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Once the repository is cloned, navigate to the project directory:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+bashCopy code
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`cd  gavyns-game-of-life`
 
-## Learn More
+Next, install the required dependencies by running:
 
-To learn more about Next.js, take a look at the following resources:
+bashCopy code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`npm install`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Running the App
 
-## Deploy on Vercel
+To run the development environment, execute the following command in your terminal:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+bashCopy code
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`npm run dev`
+
+To run a production environment locally, first, build the application by running:
+
+bashCopy code
+
+`npm run build`
+
+Once the build process is complete, start the application by running:
+
+bashCopy code
+
+`npm run start`
+
+Both environments will be available on `localhost:3000`.
+
+## Online Version
+
+You can also access an online version of the assessment here: [https://main--gavyns-game-of-life.netlify.app](https://main--gavyns-game-of-life.netlify.app/)
