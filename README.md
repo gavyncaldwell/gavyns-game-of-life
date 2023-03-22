@@ -6,19 +6,13 @@ Thank you for taking the time to review my assessment. This README file will gui
 
 To get started, please clone this repository by running the following command in your terminal:
 
-bashCopy code
-
 `git  clone  https://github.com/gavyncaldwell/gavyns-game-of-life.git`
 
 Once the repository is cloned, navigate to the project directory:
 
-bashCopy code
-
 `cd  gavyns-game-of-life`
 
 Next, install the required dependencies by running:
-
-bashCopy code
 
 `npm install`
 
@@ -26,19 +20,13 @@ bashCopy code
 
 To run the development environment, execute the following command in your terminal:
 
-bashCopy code
-
 `npm run dev`
 
 To run a production environment locally, first, build the application by running:
 
-bashCopy code
-
 `npm run build`
 
 Once the build process is complete, start the application by running:
-
-bashCopy code
 
 `npm run start`
 
