@@ -34,4 +34,4 @@ Both environments will be available on `localhost:3000`.
 
 ## Online Version
 
-You can also access an online version of the assessment here: [https://main--gavyns-game-of-life.netlify.app](https://main--gavyns-game-of-life.netlify.app/)
+You can also access an online version of the assessment here: [https://gavyns-game-of-life.netlify.app](https://gavyns-game-of-life.netlify.app/)
